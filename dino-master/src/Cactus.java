@@ -39,7 +39,7 @@ public class Cactus extends Thread {
     }
 
     public Rectangle creatRect(){
-        Rectangle rectangle = new Rectangle(this.x,this.y,this.width-20,this.height-50);
+        Rectangle rectangle = new Rectangle(this.x,this.y,this.width-30,this.height-25);
         return rectangle;
     }
 

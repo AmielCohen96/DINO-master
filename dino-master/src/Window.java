@@ -25,5 +25,4 @@ public class Window extends JFrame {
         cardLayout.show(mainPanel, name);
     }
 
-
 }

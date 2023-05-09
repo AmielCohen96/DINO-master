@@ -55,7 +55,7 @@ public class Scene extends JPanel {
                 if(!isGameOver) {
                     score = new JLabel();
                     add(score);
-                    score.setBounds(Utils.X_WINDOW + 75, Utils.Y_WINDOW + 75, 200, 50);
+                    score.setBounds(Utils.X_WINDOW + 75, Utils.Y_WINDOW + 75, 300, 50);
                     score.setFont(new Font("David", Font.PLAIN, 40));
                     score.setVisible(true);
                     this.counter = 0;

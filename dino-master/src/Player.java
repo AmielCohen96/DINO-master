@@ -34,10 +34,10 @@ public class Player extends Thread {
 
     public void jumping() {
         this.y = Utils.PLAYER_JUMP;
-        Utils.sleep(3000);
+        Utils.sleep(2800);
         this.y = Utils.Y_PLAYER;
         this.jump = false;
-        Utils.sleep(10);
+//        Utils.sleep(10);
     }
 
     public void setJump(boolean value) {
@@ -49,7 +49,7 @@ public class Player extends Thread {
     }
 
     public Rectangle creatRect() {
-        Rectangle rectangle = new Rectangle(this.x, this.y, this.width-20, this.height-50);
+        Rectangle rectangle = new Rectangle(this.x, this.y, this.width-25, this.height-25);
         return rectangle;
     }
 
