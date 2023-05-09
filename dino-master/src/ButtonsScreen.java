@@ -3,15 +3,12 @@ import java.awt.*;
 
 public class ButtonsScreen extends JPanel {
 
-    public static boolean gameStart;
-
     private JLabel over;
 
     public ButtonsScreen(int x, int y, int width, int height, Window window) {
         this.setBounds(x, y, width, height);
         this.setLayout(null);
         this.setBackground(Color.RED);
-        gameStart = false;
         JButton instructions = new JButton("Game Instructions");
         instructions.setBounds(x + Utils.X_START, y + Utils.Y_INSTRUCTION_BUTTON, Utils.START_WIDTH, Utils.START_HEIGHT);
         instructions.setFont(new Font("Game Instructions", Font.BOLD, 20));
@@ -31,8 +28,8 @@ public class ButtonsScreen extends JPanel {
         start.addActionListener(e -> {
             try {
                 Scene.initGame();
-                System.out.println("Start pressed");
-                System.out.println(Scene.isGameOver);
+//                System.out.println("Start pressed");
+//                System.out.println(Scene.isGameOver);
                 window.switchScreen("scene");
 
             } catch (Exception ex) {

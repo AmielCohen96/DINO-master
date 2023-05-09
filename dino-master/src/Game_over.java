@@ -27,8 +27,8 @@ public class Game_over extends JPanel  {
         tryAgain.addActionListener(e -> {
             try {
                 Scene.initGame();
-                System.out.println("Start pressed");
-                System.out.println(Scene.isGameOver);
+//                System.out.println("Start pressed");
+//                System.out.println(Scene.isGameOver);
                 window.switchScreen("scene");
 
             } catch (Exception ex) {

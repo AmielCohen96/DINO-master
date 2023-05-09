@@ -89,7 +89,7 @@ public class Scene extends JPanel {
                 this.repaint();
                 for (Cactus cactus : this.cactuses) {
                     if(Utils.collision(this.player.creatRect(),cactus.creatRect())){
-                        System.out.println("Crash");
+//                        System.out.println("Crash");
                         this.gameOver();
                         window.switchScreen("Game Over");
                     }
@@ -119,8 +119,6 @@ public class Scene extends JPanel {
 
     public static void initGame() {
         isGameOver = false;
-        System.out.println("initial game");
-        System.out.println(isGameOver);
     }
 
     public void paintBackground(Graphics graphics) {
