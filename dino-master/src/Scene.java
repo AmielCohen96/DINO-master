@@ -119,6 +119,7 @@ public class Scene extends JPanel {
 
     public static void initGame() {
         isGameOver = false;
+        cactuses.clear();
     }
 
     public void paintBackground(Graphics graphics) {
