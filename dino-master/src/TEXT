@@ -55,7 +55,7 @@ public class Scene extends JPanel {
                 for (Cactus cactus : this.cactuses) {
                     if(Utils.collision(this.player.creatRect(),cactus.creatRect())){
                         this.isGameOver = true;
-                        window.switchScreen("ButtonsScreen");
+                        window.switchScreen("OpenScreen");
                     }
                 }
 

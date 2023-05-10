@@ -1,11 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class ButtonsScreen extends JPanel {
+public class OpenScreen extends JPanel {
 
     private JLabel over;
 
-    public ButtonsScreen(int x, int y, int width, int height, Window window) {
+    public OpenScreen(int x, int y, int width, int height, Window window) {
         this.setBounds(x, y, width, height);
         this.setLayout(null);
         this.setBackground(Color.RED);

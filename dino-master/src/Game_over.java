@@ -5,6 +5,8 @@ public class Game_over extends JPanel  {
 
     private boolean start;
     private JLabel over;
+    private JLabel score;
+    private int tempScore;
     public Game_over(int x, int y, int width, int height, Window window) {
         this.setBounds(x, y, width, height);
         this.setLayout(null);
@@ -27,8 +29,6 @@ public class Game_over extends JPanel  {
         tryAgain.addActionListener(e -> {
             try {
                 Scene.initGame();
-//                System.out.println("Start pressed");
-//                System.out.println(Scene.isGameOver);
                 window.switchScreen("scene");
 
             } catch (Exception ex) {

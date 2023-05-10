@@ -9,7 +9,7 @@ public class Player extends Thread {
     private int x;
     private int y;
     private Scene scene;
-    private boolean jump;
+    public static boolean jump;
     private int width;
     private int height;
 

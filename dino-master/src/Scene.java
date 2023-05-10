@@ -5,11 +5,17 @@ import java.util.Random;
 
 public class Scene extends JPanel {
     private Player player;
+    private Sound jump;
+    private Sound crash;
+    private Sound backGroundSound;
+
     private static ArrayList<Cactus> cactuses;
     public static boolean isGameOver;
     private int speed;
     private int counter;
     private JLabel score;
+    public static int lastScore;
+    private JLabel level;
 
 
 
@@ -20,12 +26,16 @@ public class Scene extends JPanel {
         this.setLayout(null);
         this.player = new Player(this);
         this.player.start();
+        this.crash = new Sound("Crashing.wav");
+//        this.crash = new Sound("Background Music.wav");
+        this.jump = new Sound("jump.wav");
         this.addKeyListener(new Movement(this.player));
         this.setFocusable(true);
         this.requestFocus();
         this.cactuses = new ArrayList<>();
         this.speed = Utils.SPEED;
         this.counter = 0;
+
 
         new Thread(() ->
         {
@@ -58,8 +68,14 @@ public class Scene extends JPanel {
                     score.setBounds(Utils.X_WINDOW + 75, Utils.Y_WINDOW + 75, 300, 50);
                     score.setFont(new Font("David", Font.PLAIN, 40));
                     score.setVisible(true);
+                    level = new JLabel();
+                    add(level);
+                    level.setBounds(Utils.WIDTH - 450, Utils.Y_WINDOW + 75, 300, 50);
+                    level.setFont(new Font("David", Font.PLAIN, 40));
+                    level.setVisible(true);
                     this.counter = 0;
                     score.setText("SCORE: " + (counter));
+                    level.setText("LEVEL " + ((counter/100)+1));
                     this.repaint();
                     while (true) {
                         this.repaint();
@@ -71,6 +87,7 @@ public class Scene extends JPanel {
                         }
                         this.counter += 1;
                         score.setText("SCORE: " + (counter));
+                        level.setText("LEVEL " + ((counter/100)+1));
                         score.setVisible(true);
                     }
                 }
@@ -89,10 +106,19 @@ public class Scene extends JPanel {
                 this.repaint();
                 for (Cactus cactus : this.cactuses) {
                     if(Utils.collision(this.player.creatRect(),cactus.creatRect())){
-//                        System.out.println("Crash");
                         this.gameOver();
                         window.switchScreen("Game Over");
                     }
+                }
+            }
+        }).start();
+
+        new Thread(()->{
+            while (true){
+                requestFocus();
+                this.repaint();
+                if (Player.jump){
+                    this.jump.play();
                 }
             }
         }).start();
@@ -100,6 +126,7 @@ public class Scene extends JPanel {
 
 
     public void gameOver(){
+        this.crash.play();
         this.speed = Utils.SPEED;
         isGameOver = true;
         this.counter = 0;

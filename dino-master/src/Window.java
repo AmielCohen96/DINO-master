@@ -11,7 +11,7 @@ public class Window extends JFrame {
         this.cardLayout = new CardLayout();
         this.mainPanel = new JPanel();
         this.mainPanel.setLayout(this.cardLayout); // Set the layout of the mainPanel to cardLayout
-        this.mainPanel.add(new ButtonsScreen(Utils.X_WINDOW, Utils.Y_WINDOW, Utils.WIDTH, Utils.HEIGHT, this), "ButtonsScreen");
+        this.mainPanel.add(new OpenScreen(Utils.X_WINDOW, Utils.Y_WINDOW, Utils.WIDTH, Utils.HEIGHT, this), "ButtonsScreen");
         this.mainPanel.add(new Scene(Utils.X_WINDOW, Utils.Y_WINDOW, Utils.WIDTH, Utils.HEIGHT, this), "scene");
         this.mainPanel.add(new Game_over(Utils.X_WINDOW, Utils.Y_WINDOW, Utils.WIDTH, Utils.HEIGHT, this), "Game Over");
         this.getContentPane().add(mainPanel, BorderLayout.CENTER); // Add the mainPanel to the content pane of the Window
