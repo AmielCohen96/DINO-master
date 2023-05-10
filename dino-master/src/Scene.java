@@ -26,7 +26,6 @@ public class Scene extends JPanel {
         this.player = new Player(this);
         this.player.start();
         this.crash = new Sound("Crashing.wav");
-//        this.crash = new Sound("Background Music.wav");
         this.jump = new Sound("jump.wav");
         this.addKeyListener(new Movement(this.player));
         this.setFocusable(true);
@@ -69,7 +68,7 @@ public class Scene extends JPanel {
                     score.setVisible(true);
                     level = new JLabel();
                     add(level);
-                    level.setBounds(Utils.WIDTH - 450, Utils.Y_WINDOW + 75, 300, 50);
+                    level.setBounds(score.getX() + score.getWidth(), score.getY(), 300, 50);
                     level.setFont(new Font("David", Font.PLAIN, 40));
                     level.setVisible(true);
                     this.counter = 0;
