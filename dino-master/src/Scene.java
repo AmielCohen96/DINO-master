@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Scene extends JPanel {
     private Player player;
-    private static Sound crash;
+    private static Sounds crash;
 
     private static ArrayList<Cactus> cactuses;
     private static boolean isGameOver;
@@ -24,7 +24,7 @@ public class Scene extends JPanel {
         this.setLayout(null);
         this.player = new Player(this);
         this.player.start();
-        crash = new Sound(Utils.CRASH);
+        crash = new Sounds(Utils.CRASH);
         this.addKeyListener(new Movement(this.player));
         this.setFocusable(true);
         this.requestFocus();
