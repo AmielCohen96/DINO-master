@@ -9,24 +9,24 @@ public class Sound {
     public Sound(String filePath) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filePath));
-            clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
+            this.clip = AudioSystem.getClip();
+            this.clip.open(audioInputStream);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
     public void play() {
-        if (clip != null) {
-            clip.setFramePosition(0);
-            clip.start();
+        if (this.clip != null) {
+            this.clip.setFramePosition(0);
+            this.clip.start();
         }
     }
 
     public void stop() {
-        if (clip != null) {
-            clip.stop();
-            clip.setFramePosition(0);
+        if (this.clip != null) {
+            this.clip.stop();
+            this.clip.setFramePosition(0);
         }
     }
 }

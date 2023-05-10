@@ -5,16 +5,16 @@ import java.util.Random;
 
 public class Scene extends JPanel {
     private Player player;
-    private Sound jump;
-    private Sound crash;
-
+    private static Sound jump;
+    private static Sound crash;
 
     private static ArrayList<Cactus> cactuses;
-    public static boolean isGameOver;
+    private static boolean isGameOver;
     private int speed;
-    private int counter;
+    private static int counter;
     private JLabel score;
     private JLabel level;
+    private JLabel highScore;
 
 
 
@@ -25,14 +25,13 @@ public class Scene extends JPanel {
         this.setLayout(null);
         this.player = new Player(this);
         this.player.start();
-        this.crash = new Sound("Crashing.wav");
-        this.jump = new Sound("jump.wav");
+        crash = new Sound(Utils.CRASH);
+        jump = new Sound(Utils.JUMP);
         this.addKeyListener(new Movement(this.player));
         this.setFocusable(true);
         this.requestFocus();
-        this.cactuses = new ArrayList<>();
+        cactuses = new ArrayList<>();
         this.speed = Utils.SPEED;
-        this.counter = 0;
 
 
         new Thread(() ->
@@ -43,15 +42,11 @@ public class Scene extends JPanel {
                 if(!isGameOver) {
                     Random random = new Random();
                     Cactus cactus = new Cactus(this, speed);
-                    System.out.println("cactus created");
                     Utils.sleep(random.nextInt(4500, 7500));
                     cactus.start();
                     this.speed += 2;
-                    this.cactuses.add(cactus);
+                    cactuses.add(cactus);
                 }
-//                else {
-//                    this.restGame();
-//                }
             }
         }).start();
 
@@ -61,19 +56,25 @@ public class Scene extends JPanel {
             while (true){
                 this.repaint();
                 if(!isGameOver) {
-                    score = new JLabel();
-                    add(score);
-                    score.setBounds(Utils.X_WINDOW + 75, Utils.Y_WINDOW + 75, 300, 50);
-                    score.setFont(new Font("David", Font.PLAIN, 40));
-                    score.setVisible(true);
-                    level = new JLabel();
-                    add(level);
-                    level.setBounds(score.getX() + score.getWidth(), score.getY(), 300, 50);
-                    level.setFont(new Font("David", Font.PLAIN, 40));
-                    level.setVisible(true);
-                    this.counter = 0;
-                    score.setText("SCORE: " + (counter));
-                    level.setText("LEVEL " + ((counter/100)+1));
+                    this.score = new JLabel();
+                    add(this.score);
+                    this.score.setBounds(Utils.X_WINDOW + 75, Utils.Y_WINDOW + 75, Utils.TEXT_WIDTH, Utils.TEXT_HEIGHT);
+                    this.score.setFont(new Font("David", Font.PLAIN, Utils.FONT_SIZE));
+                    this.score.setVisible(true);
+                    this.level = new JLabel();
+                    add(this.level);
+                    this.level.setBounds(score.getX() + score.getWidth(), score.getY(), Utils.TEXT_WIDTH, Utils.TEXT_HEIGHT);
+                    this.level.setFont(new Font("David", Font.PLAIN, Utils.FONT_SIZE));
+                    this.level.setVisible(true);
+                    this.highScore = new JLabel();
+                    add(this.highScore);
+                    this.highScore.setBounds(Utils.WIDTH-700, score.getY(), Utils.TEXT_WIDTH + 100, Utils.TEXT_HEIGHT);
+                    this.highScore.setFont(new Font("David", Font.PLAIN, Utils.FONT_SIZE));
+                    this.highScore.setVisible(true);
+                    counter = 0;
+                    this.score.setText("SCORE: " + (counter));
+                    this.level.setText("LEVEL " + ((counter/100)+1));
+                    this.highScore.setText("HIGHEST LEVEL: " + Utils.maxLevel);
                     this.repaint();
                     while (true) {
                         this.repaint();
@@ -83,15 +84,15 @@ public class Scene extends JPanel {
                         else {
                             Utils.sleep(100);
                         }
-                        this.counter += 1;
-                        score.setText("SCORE: " + (counter));
-                        level.setText("LEVEL " + ((counter/100)+1));
-                        score.setVisible(true);
+                        if (!isGameOver){
+                            counter += 1;
+                        }
+                        this.score.setText("SCORE: " + (counter));
+                        this.level.setText("LEVEL " + ((counter/100)+1));
+                        this.highScore.setText("HIGHEST LEVEL: " + Utils.maxLevel);
+                        this.score.setVisible(true);
                     }
                 }
-//                else{
-//                    this.restGame();
-//                }
             }
 
         }).start();
@@ -102,52 +103,61 @@ public class Scene extends JPanel {
                 this.requestFocus();
                 Utils.sleep(10);
                 this.repaint();
-                for (Cactus cactus : this.cactuses) {
+                for (Cactus cactus : cactuses) {
                     if(Utils.collision(this.player.creatRect(),cactus.creatRect())){
-                        this.gameOver();
+                        crash.play();
                         window.switchScreen("Game Over");
+                        this.gameOver();
                     }
                 }
             }
+
         }).start();
 
-        new Thread(()->{
-            while (true){
-                requestFocus();
-                if (Player.jump){
-                    this.jump.play();
-                }
-            }
-        }).start();
+//        new Thread(()->{
+//            while (true){
+//                requestFocus();
+//                if (Player.jump){
+//                    this.jump.play();
+//                }
+//            }
+//        }).start();
     }
 
 
     public void gameOver(){
-        this.crash.play();
+        System.out.println(counter);
+        Game_over.setTempLevel(counter/10+1);
+        if((counter/100)+1 > Utils.maxLevel){
+            Utils.maxLevel = ((counter/100)+1);
+        }
         this.speed = Utils.SPEED;
         isGameOver = true;
-        this.counter = 0;
         for (Cactus cactus : cactuses){
             cactus.rest();
         }
     }
 
-//    public void restGame(){
-//        this.isGameOver = true;
-//        System.out.println("Game Over");
-//        this.counter = 0;
-//        this.speed = Utils.SPEED;
-//        cactuses.clear();
-//
-//    }
+    public static Sound getJump() {
+        return jump;
+    }
+
+    public static int getCounter() {
+        return counter;
+    }
+
+    public static boolean getIsGameOver() {
+        return isGameOver;
+    }
 
     public static void initGame() {
         isGameOver = false;
         cactuses.clear();
+        counter=0;
     }
 
     public void paintBackground(Graphics graphics) {
-        ImageIcon imageIcon = new ImageIcon("C:\\Users\\User\\Downloads\\dino-master\\dino-master\\src\\picture\\170%.jpg");
+        ImageIcon imageIcon = new ImageIcon("dino-master/src/picture/170%.jpg");
         imageIcon.paintIcon(this, graphics, 0, 0);
     }
 
@@ -155,7 +165,7 @@ public class Scene extends JPanel {
         super.paintComponent(graphics);
         paintBackground(graphics);
         this.player.paint(graphics);
-        for (Cactus cactus : this.cactuses) {
+        for (Cactus cactus : cactuses) {
             cactus.paint(graphics);
             this.repaint();
         }

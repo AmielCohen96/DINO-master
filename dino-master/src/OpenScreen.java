@@ -36,11 +36,11 @@ public class OpenScreen extends JPanel {
                 throw new RuntimeException(ex);
             }
         });
-        title = new JLabel("DINO CHROME");
-        add(title);
-        title.setBounds(x + instructions.getX() - 50,125,Utils.START_WIDTH + 120,Utils.START_HEIGHT);
-        title.setFont(new Font("David", Font.PLAIN, 50));
-        title.setVisible(true);
+        this.title = new JLabel("DINO CHROME");
+        add(this.title);
+        this.title.setBounds(x + instructions.getX() - 50,125,Utils.START_WIDTH + 120,Utils.START_HEIGHT);
+        this.title.setFont(new Font("David", Font.PLAIN, 50));
+        this.title.setVisible(true);
         this.repaint();
 
     }
@@ -64,7 +64,7 @@ public class OpenScreen extends JPanel {
     }
 
     public void paintBackground(Graphics graphics) {
-        ImageIcon imageIcon = new ImageIcon("C:\\Users\\User\\Downloads\\dino-master\\dino-master\\src\\picture\\170%.jpg");
+        ImageIcon imageIcon = new ImageIcon("dino-master/src/picture/170%.jpg");
         imageIcon.paintIcon(this, graphics, 0, 0);
     }
 

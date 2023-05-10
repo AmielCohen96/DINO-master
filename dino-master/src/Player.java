@@ -34,7 +34,7 @@ public class Player extends Thread {
 
     public void jumping() {
         this.y = Utils.PLAYER_JUMP;
-        Utils.sleep(2800);
+        Utils.sleep(2000);
         this.y = Utils.Y_PLAYER;
         this.jump = false;
 //        Utils.sleep(10);
@@ -55,7 +55,7 @@ public class Player extends Thread {
 
 
     public void paint(Graphics graphics) {
-        ImageIcon imageIcon = new ImageIcon("C:\\Users\\User\\Downloads\\dino-master\\dino-master\\src\\picture\\IMG_6988 (1).GIF");
+        ImageIcon imageIcon = new ImageIcon("dino-master/src/picture/IMG_6988 (1).GIF");
         imageIcon.paintIcon(this.scene, graphics, this.x, this.y);
 
     }

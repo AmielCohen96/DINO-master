@@ -19,7 +19,7 @@ public class Cactus extends Thread {
 
     }
     public void run () {
-        while (true) {
+        while (!Scene.getIsGameOver()) {
             this.x -= this.speed;
             Utils.sleep(100);
         }
@@ -33,7 +33,7 @@ public class Cactus extends Thread {
         this.speed = Utils.SPEED;
     }
     public void paint (Graphics graphics) {
-        ImageIcon imageIcon = new ImageIcon("C:\\Users\\User\\Downloads\\dino-master\\dino-master\\src\\picture\\200.png");
+        ImageIcon imageIcon = new ImageIcon("dino-master/src/picture/200.png");
         imageIcon.paintIcon(this.scene, graphics, this.x, this.y);
         this.width = imageIcon.getIconWidth();
     }
