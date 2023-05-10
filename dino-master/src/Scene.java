@@ -157,13 +157,9 @@ public class Scene extends JPanel {
         super.paintComponent(graphics);
         paintBackground(graphics);
         this.player.paint(graphics);
-        try {
-            for (Cactus cactus : cactuses) {
+        for (Cactus cactus : cactuses) {
                 cactus.paint(graphics);
                 this.repaint();
-        }
-        }catch (Exception e){
-            throw new RuntimeException();
-        }
     }
+}
 }
