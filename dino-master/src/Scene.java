@@ -7,14 +7,13 @@ public class Scene extends JPanel {
     private Player player;
     private Sound jump;
     private Sound crash;
-    private Sound backGroundSound;
+
 
     private static ArrayList<Cactus> cactuses;
     public static boolean isGameOver;
     private int speed;
     private int counter;
     private JLabel score;
-    public static int lastScore;
     private JLabel level;
 
 
@@ -116,7 +115,6 @@ public class Scene extends JPanel {
         new Thread(()->{
             while (true){
                 requestFocus();
-                this.repaint();
                 if (Player.jump){
                     this.jump.play();
                 }

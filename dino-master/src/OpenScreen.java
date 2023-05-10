@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class OpenScreen extends JPanel {
 
-    private JLabel over;
+    private JLabel title;
 
     public OpenScreen(int x, int y, int width, int height, Window window) {
         this.setBounds(x, y, width, height);
@@ -36,11 +36,11 @@ public class OpenScreen extends JPanel {
                 throw new RuntimeException(ex);
             }
         });
-        over = new JLabel("DINO CHROME");
-        add(over);
-        over.setBounds(x + instructions.getX() - 50,125,Utils.START_WIDTH + 120,Utils.START_HEIGHT);
-        over.setFont(new Font("David", Font.PLAIN, 50));
-        over.setVisible(true);
+        title = new JLabel("DINO CHROME");
+        add(title);
+        title.setBounds(x + instructions.getX() - 50,125,Utils.START_WIDTH + 120,Utils.START_HEIGHT);
+        title.setFont(new Font("David", Font.PLAIN, 50));
+        title.setVisible(true);
         this.repaint();
 
     }
