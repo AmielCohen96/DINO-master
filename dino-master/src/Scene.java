@@ -5,8 +5,7 @@ import java.util.Random;
 
 public class Scene extends JPanel {
     private Player player;
-//    private static Sound jump;
-//    private static Sound crash;
+    private static Sound crash;
 
     private static ArrayList<Cactus> cactuses;
     private static boolean isGameOver;
@@ -25,8 +24,7 @@ public class Scene extends JPanel {
         this.setLayout(null);
         this.player = new Player(this);
         this.player.start();
-//        crash = new Sound(Utils.CRASH);
-//        jump = new Sound(Utils.JUMP);
+        crash = new Sound(Utils.CRASH);
         this.addKeyListener(new Movement(this.player));
         this.setFocusable(true);
         this.requestFocus();
@@ -105,7 +103,7 @@ public class Scene extends JPanel {
                 this.repaint();
                 for (Cactus cactus : cactuses) {
                     if(Utils.collision(this.player.creatRect(),cactus.creatRect())){
-//                        crash.play();
+                        crash.play();
                         window.switchScreen("Game Over");
                         this.gameOver();
                     }
@@ -118,7 +116,6 @@ public class Scene extends JPanel {
 
 
     public void gameOver(){
-        System.out.println(counter);
         Game_over.setTempLevel(counter/10+1);
         if((counter/100)+1 > Utils.maxLevel){
             Utils.maxLevel = ((counter/100)+1);
@@ -130,9 +127,6 @@ public class Scene extends JPanel {
         }
     }
 
-//    public static Sound getJump() {
-//        return jump;
-//    }
 
     public static int getCounter() {
         return counter;
@@ -158,8 +152,8 @@ public class Scene extends JPanel {
         paintBackground(graphics);
         this.player.paint(graphics);
         for (Cactus cactus : cactuses) {
-                cactus.paint(graphics);
-                this.repaint();
+            cactus.paint(graphics);
+            this.repaint();
+        }
     }
-}
 }

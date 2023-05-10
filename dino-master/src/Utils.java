@@ -12,7 +12,7 @@ public class Utils {
 
     public static final int X_CACTUS = 1300;
     public static final int Y_CACTUS = 600;
-    public static final int SPEED = 20;
+    public static final int SPEED = 22;
     public static final int X_START = 600 ;
     public static final int Y_INSTRUCTION_BUTTON = 400;
 
@@ -25,8 +25,7 @@ public class Utils {
     public static final int PLAYER_HEIGHT = 400 ;
 
     public static int maxLevel = 1;
-//    public static final String JUMP = "jump.wav";
-//    public static final String CRASH = "Crashing.wav";
+    public static final String CRASH = "Crashing.wav";
 
     public static final int TEXT_WIDTH = 300;
     public static final int TEXT_HEIGHT = 50;

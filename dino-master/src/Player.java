@@ -17,7 +17,7 @@ public class Player extends Thread {
         this.x = Utils.X_PLAYER;
         this.y = Utils.Y_PLAYER;
         this.scene = scene;
-        this.jump = false;
+        jump = false;
         this.width = Utils.PLAYER_WIDTH;
         this.height = Utils.PLAYER_HEIGHT;
     }
@@ -25,7 +25,7 @@ public class Player extends Thread {
 
     public void run() {
         while (true) {
-            if (this.jump) {
+            if (jump) {
                 this.jumping();
             }
             Utils.sleep(10);
@@ -34,14 +34,13 @@ public class Player extends Thread {
 
     public void jumping() {
         this.y = Utils.PLAYER_JUMP;
-        Utils.sleep(2000);
+        Utils.sleep(2500);
         this.y = Utils.Y_PLAYER;
-        this.jump = false;
-//        Utils.sleep(10);
+        jump = false;
     }
 
     public void setJump(boolean value) {
-        this.jump = value;
+        jump = value;
     }
 
 
