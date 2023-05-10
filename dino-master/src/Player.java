@@ -44,9 +44,6 @@ public class Player extends Thread {
         this.jump = value;
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
 
     public Rectangle creatRect() {
         Rectangle rectangle = new Rectangle(this.x, this.y, this.width-25, this.height-25);

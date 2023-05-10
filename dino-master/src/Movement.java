@@ -1,8 +1,11 @@
+
+import javax.sound.sampled.Clip;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Movement implements KeyListener {
     private Player player;
+    private Clip clip;
 
     public Movement(Player player){
         this.player= player;

@@ -25,8 +25,8 @@ public class Utils {
     public static final int PLAYER_HEIGHT = 400 ;
 
     public static int maxLevel = 1;
-    public static final String JUMP = "jump.wav";
-    public static final String CRASH = "Crashing.wav";
+//    public static final String JUMP = "jump.wav";
+//    public static final String CRASH = "Crashing.wav";
 
     public static final int TEXT_WIDTH = 300;
     public static final int TEXT_HEIGHT = 50;

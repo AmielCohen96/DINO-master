@@ -88,9 +88,5 @@ public class Game_over extends JPanel  {
         paintBackground(graphics);
     }
 
-    public void setLevel()
-    {
-        tempLevel = ((Scene.getCounter()/10)+1);
-    }
 }
 

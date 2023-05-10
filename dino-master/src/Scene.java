@@ -25,8 +25,8 @@ public class Scene extends JPanel {
         this.setLayout(null);
         this.player = new Player(this);
         this.player.start();
-        crash = new Sound(Utils.CRASH);
-        jump = new Sound(Utils.JUMP);
+//        crash = new Sound(Utils.CRASH);
+//        jump = new Sound(Utils.JUMP);
         this.addKeyListener(new Movement(this.player));
         this.setFocusable(true);
         this.requestFocus();
@@ -114,14 +114,6 @@ public class Scene extends JPanel {
 
         }).start();
 
-//        new Thread(()->{
-//            while (true){
-//                requestFocus();
-//                if (Player.jump){
-//                    this.jump.play();
-//                }
-//            }
-//        }).start();
     }
 
 
@@ -165,9 +157,13 @@ public class Scene extends JPanel {
         super.paintComponent(graphics);
         paintBackground(graphics);
         this.player.paint(graphics);
-        for (Cactus cactus : cactuses) {
-            cactus.paint(graphics);
-            this.repaint();
+        try {
+            for (Cactus cactus : cactuses) {
+                cactus.paint(graphics);
+                this.repaint();
+        }
+        }catch (Exception e){
+            throw new RuntimeException();
         }
     }
 }

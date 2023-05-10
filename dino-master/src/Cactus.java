@@ -16,7 +16,6 @@ public class Cactus extends Thread {
         this.scene = scene;
         this.width = Utils.CACTUS_WIDTH;
         this.height = Utils.CACTUS_HEIGHT;
-
     }
     public void run () {
         while (!Scene.getIsGameOver()) {
@@ -24,7 +23,6 @@ public class Cactus extends Thread {
             Utils.sleep(100);
         }
     }
-
 
     public void rest()
     {

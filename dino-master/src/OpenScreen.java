@@ -28,8 +28,7 @@ public class OpenScreen extends JPanel {
         start.addActionListener(e -> {
             try {
                 Scene.initGame();
-//                System.out.println("Start pressed");
-//                System.out.println(Scene.isGameOver);
+
                 window.switchScreen("scene");
 
             } catch (Exception ex) {
